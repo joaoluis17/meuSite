@@ -1,11 +1,7 @@
 <?php
 
-Route::get('/home', function () {
-    echo "Bem-Vindo ao meu Lugar!";
-});
+Route::get('/home', 'HomeController@home');
 
-Route::get('/sobre-mim', function () {
-    echo "Oi, eu sou o John!";
-});
+Route::get('/home/albuns', 'HomeController@albuns');
 
-Route::get('/links', 'LinksController@listarLinks');
+Route::post('/home/albuns', 'HomeController@store');
