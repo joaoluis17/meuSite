@@ -1,7 +1,9 @@
 <?php
 
-Route::get('/home', 'HomeController@home');
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlbunsController;
 
-Route::get('/home/albuns', 'HomeController@albuns');
-
-Route::post('/home/albuns', 'HomeController@store');
+Route::get('/pages', [AlbunsController::class,'index'])->name('listar_albuns');
+Route::get('/pages/albuns', [AlbunsController::class,'create'])->name('form_criar_album');
+Route::post('/pages/albuns', [AlbunsController::class,'store']);
+Route::delete('/albuns/{id}', [AlbunsController::class,'destroy']);

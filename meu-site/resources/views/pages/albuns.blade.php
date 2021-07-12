@@ -1,29 +1,28 @@
 @extends('layout')
 
 @section('cabecalho')
-Lançamentos
+    Adicionar Álbum
 @endsection
 
 @section('conteudo')
-    <div class="container">
-        <div class="titulo">
-            <h1>Meus Lançamentos</h1>
-            <ul>Álbuns
-                <li>Acorrentado</li>
-                <li>Insanity Love</li>
-                <li>End Game</li>
-                <li>Her</li>
-                <li>Somebody Told Me</li>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
             </ul>
         </div>
+    @endif
 
-        <form method="post">
-            @csrf
-            <div class="input-group">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control">
-            </div>
-            <button class="btn btn-primary" name="Nome">Adicionar</button>
-        </form>
-    </div>
+    <form method="post">
+        @csrf
+        <div class="form-group">
+            <label for="nome" class="'">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome">
+
+        </div>
+        <button class="btn btn-primary">Adicionar</button>
+    </form>
 @endsection
