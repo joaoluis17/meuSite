@@ -18,11 +18,22 @@
 
     <form method="post">
         @csrf
-        <div class="form-group">
-            <label for="nome" class="'">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome">
+        <div class="row">
+            <div class="col-col-8 mr-4">
+                <label for="nome" class="'">Nome</label>
+                <input type="text" class="form-control" name="nome" id="nome">
+            </div>
 
+            <div class="col-col-2 mr-4">
+                <label for="volume" class="'">Volume Número:</label>
+                <input type="number" class="form-control" name="volume" id="volume">
+            </div>
+
+            <div class="col-col-2">
+                <label for="faixa" class="'">Faixas</label>
+                <input type="number" class="form-control" name="faixa" id="faixa">
+            </div>
         </div>
-        <button class="btn btn-primary">Adicionar</button>
+        <button class="btn btn-primary mt-2">Adicionar</button>
     </form>
 @endsection
