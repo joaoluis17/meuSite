@@ -4,25 +4,23 @@
 namespace App\Services;
 
 
-use App\Album;
-use App\Faixa;
-use App\Volume;
+use App\{Album, Volume, Faixa};
 use Illuminate\Support\Facades\DB;
 
 class RemovedorDeAlbum
 {
     public function removerAlbum(int $albumId) : string
     {
-        $nomeAlbum = '';
-        DB::transaction(function () use ($albumId, &$nomeAlbum) {
+        $nome = '';
+        DB::transaction(function () use ($albumId, &$nome) {
             $album = Album::find($albumId);
-            $nomeAlbum = $album->nome;
+            $nome = $album->nome;
 
             $this->removerVolume($album);
             $album->delete();
         });
 
-        return $nomeAlbum;
+        return $nome;
     }
 
     private function removerVolume(Album $album): void

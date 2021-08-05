@@ -43,4 +43,12 @@ class AlbunsController extends Controller
         return redirect()->route('listar_albuns');
     }
 
+    public function editaNome(int $id, Request $request)
+    {
+        $album = Album::find($id);
+        $novoNome = $request->nome;
+        $album->nome = $novoNome;
+        $album->save();
+    }
+
 }

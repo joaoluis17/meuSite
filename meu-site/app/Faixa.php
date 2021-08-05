@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Faixa extends Model
 {
-    public $timestamps = false;
     protected $fillable = ['numero'];
+    public $timestamps = false;
 
     public function volume () {
 

@@ -11,8 +11,8 @@ class CreateVolumesTable extends Migration
     {
         Schema::create('volumes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('album_id');
             $table->integer('numero');
+            $table->integer('album_id');
             $table->foreign('album_id')->references('id')->on('albuns');
         });
     }

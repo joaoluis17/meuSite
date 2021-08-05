@@ -4,7 +4,6 @@
 namespace App\Services;
 
 use App\Album;
-use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Support\Facades\DB;
 
 class CriadorDeAlbum
@@ -13,21 +12,28 @@ class CriadorDeAlbum
     {
         DB::beginTransaction();
         $album = Album::create(['nome' => $nome]);
-        $this->criaVolumes($numVolumes, $album, $numFaixas);
+        $this->criaVolumes($numVolumes, $numFaixas, $album);
         DB::commit();
 
         return $album;
     }
 
-    public function criaVolumes(int $numVolumes, $album, int $numFaixas): void
+    private function criaVolumes($numVolumes, $numFaixas, Album $album): void
     {
         for ($i = 1; $i <= $numVolumes; $i++) {
             $volume = $album->volumes()->create(['numero' => $i]);
 
-            for ($j = 1; $j <= $numFaixas; $j++) {
-                $volume->faixas()->create(['numero' => $j]);
-
-            }
+            $this->criaFaixas($numFaixas, $volume);
         }
     }
+
+    private function criaFaixas($numFaixas, $volume): void
+    {
+        for ($j = 1; $j <= $numFaixas; $j++) {
+            $volume->faixas()->create(['numero' => $j]);
+
+        }
+    }
+
+
 }

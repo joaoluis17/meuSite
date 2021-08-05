@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class AlbunsFormRequest extends FormRequest
 {
 
+
     public function authorize()
     {
         return true;
